@@ -1,61 +1,31 @@
+import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
+import 'package:entrevista_ff/src/repository/user_repository.dart';
+import 'package:entrevista_ff/src/ui/home_screen.dart';
+import 'package:entrevista_ff/src/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
+  final UserRepository _userRepository;
+
+  App({Key key, @required UserRepository userRepository})
+    : assert(userRepository != null),
+      _userRepository = userRepository,
+      super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is Uninitialized) {
+            return SplashScreen();
+          }
+          if (state is Authenticated) {
+            return HomeScreen(name: state.displayName);
+          }
+        },
+      )
     );
   }
 }
