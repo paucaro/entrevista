@@ -2,7 +2,7 @@ import 'package:entrevista_ff/src/bloc/login_bloc/bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/user_repository.dart';
 import 'package:entrevista_ff/src/repository/validators.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {

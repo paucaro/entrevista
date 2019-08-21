@@ -17,6 +17,7 @@ dependencies:
   equatable:
   meta:
   font_awesome_flutter:
+  flutter_auth_buttons:
 
 dev_dependencies:
   flutter_test:
