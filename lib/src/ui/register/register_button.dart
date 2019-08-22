@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class RegisterButton extends StatelessWidget {
@@ -11,10 +12,10 @@ class RegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(NUMBER_THIRTY),
       ),
       onPressed: _onPressed,
-      child: Text('Registrar'),
+      child: Text(REGISTER_BUTTON),
     );
   }
 }

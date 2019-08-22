@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
@@ -11,10 +12,12 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RaisedButton(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(NUMBER_THIRTY),
       ),
+      textColor: Colors.white,
+      color: Colors.orange,
       onPressed: _onPressed,
-      child: Text('Iniciar Sesión'),
+      child: Text(LOGIN_BUTTON),
     );
   }
 }

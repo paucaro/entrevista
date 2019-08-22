@@ -2,6 +2,7 @@ import 'package:entrevista_ff/src/bloc/authentication_bloc/authentication_event.
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/register_bloc/bloc.dart';
 import 'package:entrevista_ff/src/ui/register/register_button.dart';
+import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +44,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Registrando... '),
+                    Text(REGISTERING_IN),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -62,7 +63,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Registro fallido'),
+                    Text(REGISTER_FAILURE),
                     Icon(Icons.error),
                   ],
                 ),
@@ -74,7 +75,7 @@ class _RegisterFormState extends State<RegisterForm> {
       child: BlocBuilder<RegisterBloc, RegisterState>(
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(NUMBER_TWENTY),
             child: Form(
               child: ListView(
                 children: <Widget>[
@@ -82,25 +83,25 @@ class _RegisterFormState extends State<RegisterForm> {
                     controller: _emailController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.email),
-                      labelText: 'Email',
+                      labelText: LABEL_EMAIL,
                     ),
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
+                      return !state.isEmailValid ? INVALID_EMAIL : null;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.lock),
-                      labelText: 'Password',
+                      labelText: LABEL_PASSWORD,
                     ),
                     obscureText: true,
                     autocorrect: false,
                     autovalidate: true,
                     validator: (_) {
-                      return !state.isPasswordValid ? 'Invalid Password' : null;
+                      return !state.isPasswordValid ? INVALID_PASSWORD : null;
                     },
                   ),
                   RegisterButton(

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:entrevista_ff/src/util/constants.dart';
 
 abstract class LoginEvent extends Equatable {
   LoginEvent([List props = const []]) : super(props);
@@ -20,7 +21,7 @@ class EmailChanged extends LoginEvent {
   EmailChanged({@required this.email}) : super([email]);
 
   @override
-  String toString() => 'EmailChanged { email : $email }';
+  String toString() => EMAIL_CHANGED + '$email }';
 }
 
 class PasswordChanged extends LoginEvent {
@@ -29,7 +30,7 @@ class PasswordChanged extends LoginEvent {
   PasswordChanged({@required this.password}) : super([password]);
 
   @override
-  String toString() => 'PasswordChanged { password : $password }';
+  String toString() => PASSWORD_CHANGED + '$password }';
 }
 
 class Submitted extends LoginEvent {
@@ -41,7 +42,7 @@ class Submitted extends LoginEvent {
 
   @override
   String toString() {
-    return 'Submitted { email: $email, password: $password}';
+    return SUBMITTED + '$email, password: $password}';
   }
 }
 

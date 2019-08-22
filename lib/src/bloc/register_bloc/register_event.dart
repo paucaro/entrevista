@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -12,7 +13,7 @@ class EmailChanged extends RegisterEvent {
   EmailChanged({@required this.email}) : super([email]);
 
   @override
-  String toString() => 'EmailChanged { email :$email}';
+  String toString() => EMAIL_CHANGED + '$email}';
 }
 
 class PasswordChanged extends RegisterEvent {
@@ -21,7 +22,7 @@ class PasswordChanged extends RegisterEvent {
   PasswordChanged({@required this.password}) : super([password]);
 
   @override
-  String toString() => 'PasswordChanged { password: $password}';
+  String toString() => PASSWORD_CHANGED + '$password}';
 }
 
 class Submitted extends RegisterEvent {
@@ -33,6 +34,6 @@ class Submitted extends RegisterEvent {
 
   @override
   String toString() {
-    return 'Submitted { email: $email, password: $password }';
+    return SUBMITTED + '$email, password: $password }';
   }
 }

@@ -4,6 +4,7 @@ import 'package:entrevista_ff/src/repository/user_repository.dart';
 import 'package:entrevista_ff/src/ui/login/create_account_button.dart';
 import 'package:entrevista_ff/src/ui/login/google_login_button.dart';
 import 'package:entrevista_ff/src/ui/login/login_button.dart';
+import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,6 +45,9 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.isFailure) {
@@ -53,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
               SnackBar(
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('LoginFailure'), Icon(Icons.error)],
+                  children: [Text(LOGIN_FAILURE), Icon(Icons.error)],
                 ),
                 backgroundColor: Colors.red,
               ),
@@ -67,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Logging In... '),
+                    Text(LOGGING_IN),
                     CircularProgressIndicator(),
                   ],
                 ),
@@ -80,56 +84,67 @@ class _LoginFormState extends State<LoginForm> {
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Form(
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Image.asset('assets/logo_imagen.png', height: 200),
-                  ),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      labelText: 'Email',
+          return Center(
+            child: Container(
+              width: width * NUMBER_EIGHTY_PERCENT,
+              height: height * NUMBER_EIGHTY_PERCENT,
+              //color: Colors.white,
+              child: Form(
+                child: ListView(
+                  children: <Widget>[
+                    Container(
+                      width: width * NUMBER_THIRTY_PERCENT,
+                      height: height * NUMBER_THIRTY_PERCENT,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(ASSETS_LOGO),
+                        )
+                      ),
                     ),
-                    autovalidate: true,
-                    autocorrect: false,
-                    validator: (_) {
-                      return !state.isEmailValid ? 'Invalid Email' : null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: 'Password',
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.email),
+                        labelText: LABEL_EMAIL,
+                      ),
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isEmailValid ? INVALID_EMAIL : null;
+                      },
                     ),
-                    obscureText: true,
-                    autovalidate: true,
-                    autocorrect: false,
-                    validator: (_) {
-                      return !state.isPasswordValid ? 'Invalid Password' : null;
-                    },
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        LoginButton(
-                          onPressed: isLoginButtonEnabled(state)
-                            ? _onFormSubmitted
-                            : null,
-                        ),
-                        GoogleLoginButton(),
-                        CreateAccountButton(userRepository: _userRepository)
-                      ],
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.lock),
+                        labelText: LABEL_PASSWORD,
+                      ),
+                      obscureText: true,
+                      autovalidate: true,
+                      autocorrect: false,
+                      validator: (_) {
+                        return !state.isPasswordValid ? INVALID_PASSWORD : null;
+                      },
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: NUMBER_TWENTY),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          LoginButton(
+                            onPressed: isLoginButtonEnabled(state)
+                              ? _onFormSubmitted
+                              : null,
+                          ),
+                          GoogleLoginButton(),
+                          CreateAccountButton(userRepository: _userRepository)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );
