@@ -1,6 +1,6 @@
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/user_repository.dart';
-import 'package:entrevista_ff/src/ui/home_screen.dart';
+import 'package:entrevista_ff/src/ui/home/home.dart';
 import 'package:entrevista_ff/src/ui/login/login_screen.dart';
 import 'package:entrevista_ff/src/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +10,9 @@ class App extends StatelessWidget {
   final UserRepository _userRepository;
 
   App({Key key, @required UserRepository userRepository})
-    : assert(userRepository != null),
-      _userRepository = userRepository,
-      super(key: key);
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class App extends StatelessWidget {
             return LoginScreen(userRepository: _userRepository);
           }
           if (state is Authenticated) {
-            return HomeScreen(name: state.displayName);
+            return Home(user: state.user);
           }
         },
-      )
+      ),
     );
   }
 }

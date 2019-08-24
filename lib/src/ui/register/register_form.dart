@@ -34,6 +34,9 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state.isSubmitting) {
@@ -74,42 +77,45 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       child: BlocBuilder<RegisterBloc, RegisterState>(
         builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(NUMBER_TWENTY),
-            child: Form(
-              child: ListView(
-                children: <Widget>[
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.email),
-                      labelText: LABEL_EMAIL,
+          return Center(
+            child: Container(
+              width: width * NUMBER_EIGHTY_PERCENT,
+              height: height * NUMBER_EIGHTY_PERCENT,
+              child: Form(
+                child: ListView(
+                  children: <Widget>[
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.email),
+                        labelText: LABEL_EMAIL,
+                      ),
+                      autocorrect: false,
+                      autovalidate: true,
+                      validator: (_) {
+                        return !state.isEmailValid ? INVALID_EMAIL : null;
+                      },
                     ),
-                    autocorrect: false,
-                    autovalidate: true,
-                    validator: (_) {
-                      return !state.isEmailValid ? INVALID_EMAIL : null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
-                      labelText: LABEL_PASSWORD,
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.lock),
+                        labelText: LABEL_PASSWORD,
+                      ),
+                      obscureText: true,
+                      autocorrect: false,
+                      autovalidate: true,
+                      validator: (_) {
+                        return !state.isPasswordValid ? INVALID_PASSWORD : null;
+                      },
                     ),
-                    obscureText: true,
-                    autocorrect: false,
-                    autovalidate: true,
-                    validator: (_) {
-                      return !state.isPasswordValid ? INVALID_PASSWORD : null;
-                    },
-                  ),
-                  RegisterButton(
-                    onPressed: isRegisterButtonEnabled(state)
-                      ? _onFormSubmitted
-                      : null,
-                  ),
-                ],
+                    RegisterButton(
+                      onPressed: isRegisterButtonEnabled(state)
+                        ? _onFormSubmitted
+                        : null,
+                    ),
+                  ],
+                ),
               ),
             ),
           );

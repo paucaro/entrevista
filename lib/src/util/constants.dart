@@ -36,6 +36,9 @@ const String REGISTER_TITLE = 'Registro';
 const String ENTREVISTA_TITLE = 'Mi Entrevista';
 const String SPLASH_SCREEN_WELCOME = 'Mi Entrevista';
 const String SPLASH_SCREEN_PHRASE = 'Bienvenido \n Aprende y Practica';
+const String LOGOUT_BUTTON = 'Cerrar Sesión';
+const String TEORIA_BUTTON = 'Aprender';
+const String PRACTICA_BUTTON = 'Practicar';
 
 
 /// NUMBER
@@ -51,3 +54,5 @@ const NUMBER_THIRTY_PERCENT = 0.30;
 /// RUTAS
 /// ASSETS
 const String ASSETS_LOGO = 'assets/logo_imagen.png';
+const String PATH_TEORIA = '/teoria';
+const String PATH_PRACTICA = '/practica';
