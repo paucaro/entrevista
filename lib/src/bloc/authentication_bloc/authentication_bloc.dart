@@ -6,16 +6,15 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+  AuthenticationBloc({@required UserRepository userRepository})
+    : assert(userRepository != null),
+      _userRepository = userRepository;
+  
   final UserRepository _userRepository;
 
   /// AuthenticationBloc is going to manage checking and
   /// updating a user's AuthenticationState in response to
   /// AuthenticationEvents (convert events into states)
-  
-  AuthenticationBloc({@required UserRepository userRepository})
-    : assert(userRepository != null),
-      _userRepository = userRepository;
-
   @override
   AuthenticationState get initialState => Uninitialized();
 

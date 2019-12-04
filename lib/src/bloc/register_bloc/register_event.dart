@@ -4,34 +4,45 @@ import 'package:meta/meta.dart';
 
 
 abstract class RegisterEvent extends Equatable {
-  RegisterEvent([List props = const[]]) : super(props);
+  const RegisterEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
 class EmailChanged extends RegisterEvent {
+  const EmailChanged({@required this.email});
+
   final String email;
 
-  EmailChanged({@required this.email}) : super([email]);
+  @override
+  List<Object> get props => [email];
 
   @override
   String toString() => EMAIL_CHANGED + '$email}';
 }
 
 class PasswordChanged extends RegisterEvent {
+  const PasswordChanged({@required this.password});
+
   final String password;
 
-  PasswordChanged({@required this.password}) : super([password]);
+  @override
+  List<Object> get props => [password];
 
   @override
   String toString() => PASSWORD_CHANGED + '$password}';
 }
 
 class Submitted extends RegisterEvent {
+  const Submitted({@required this.email, @required this.password});
+  
   final String email;
   final String password;
 
-  Submitted({@required this.email, @required this.password})
-    : super([email, password]);
-
+  @override
+  List<Object> get props => [email, password];
+  
   @override
   String toString() {
     return SUBMITTED + '$email, password: $password }';

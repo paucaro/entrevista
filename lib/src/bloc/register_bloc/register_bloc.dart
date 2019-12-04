@@ -6,29 +6,28 @@ import 'package:bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  final UserRepository _userRepository;
-
   RegisterBloc({@required UserRepository userRepository})
-    :assert(userRepository != null),
-    _userRepository = userRepository;
+      : assert(userRepository != null),
+        _userRepository = userRepository;
+
+  final UserRepository _userRepository;
 
   @override
   RegisterState get initialState => RegisterState.empty();
 
   @override
-  Stream<RegisterState> transform(
-    Stream<RegisterEvent> events, 
-    Stream<RegisterState> Function(RegisterEvent event) next
-  ) {
+  Stream<RegisterState> transformEvents(Stream<RegisterEvent> events,
+      Stream<RegisterState> Function(RegisterEvent event) next) {
     final observableStream = events as Observable<RegisterEvent>;
     final nonDebounceStream = observableStream.where((event) {
-      return (event is! EmailChanged && event is! PasswordChanged);
+      return event is! EmailChanged && event is! PasswordChanged;
     });
     final debounceStream = observableStream.where((event) {
-      return (event is EmailChanged || event is PasswordChanged);
+      return event is EmailChanged || event is PasswordChanged;
     }).debounceTime(Duration(milliseconds: 300));
-    
-    return super.transform(nonDebounceStream.mergeWith([debounceStream]), next);
+
+    return super
+        .transformEvents(nonDebounceStream.mergeWith([debounceStream]), next);
   }
 
   @override
@@ -43,21 +42,19 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   Stream<RegisterState> _mapEmailChangedToState(String email) async* {
-    yield currentState.update(
+    yield state.update(
       isEmailValid: Validators.isValidEmail(email),
     );
   }
 
   Stream<RegisterState> _mapPasswordChangedToState(String password) async* {
-    yield currentState.update(
+    yield state.update(
       isPasswordValid: Validators.isValidPassword(password),
     );
   }
 
   Stream<RegisterState> _mapFormSubmittedToState(
-    String email,
-    String password
-  ) async* {
+      String email, String password) async* {
     yield RegisterState.loading();
     try {
       await _userRepository.signUp(
@@ -69,6 +66,4 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       yield RegisterState.failure();
     }
   }
-
-  
 }

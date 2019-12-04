@@ -1,14 +1,6 @@
 import 'package:meta/meta.dart';
 
 class RegisterState {
-  final bool isEmailValid;
-  final bool isPasswordValid;
-  final bool isSubmitting;
-  final bool isSuccess;
-  final bool isFailure;
-
-  bool get isFormValid => isEmailValid && isPasswordValid;
-
   RegisterState({
     @required this.isEmailValid, 
     @required this.isPasswordValid, 
@@ -56,6 +48,14 @@ class RegisterState {
       isFailure: false,
     );
   }
+
+  final bool isEmailValid;
+  final bool isPasswordValid;
+  final bool isSubmitting;
+  final bool isSuccess;
+  final bool isFailure;
+
+  bool get isFormValid => isEmailValid && isPasswordValid;
 
   RegisterState update({
     bool isEmailValid,

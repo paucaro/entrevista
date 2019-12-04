@@ -11,7 +11,7 @@ class GoogleLoginButton extends StatelessWidget {
     return GoogleSignInButton(
       text: GOOGLE_BUTTON ,
       onPressed: () {
-        BlocProvider.of<LoginBloc>(context).dispatch(
+        BlocProvider.of<LoginBloc>(context).add(
           LoginWithGooglePressed(),
         );
       },

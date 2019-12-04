@@ -8,9 +8,9 @@ class PracticaScreen extends StatelessWidget {
         child: Container(
             height: 200,
             width: 200,
-            alignment: Alignment(0, 0),
+            alignment: const Alignment(0, 0),
             child: Text(
-              "Page Practica",
+              'Page Practica',
               style: TextStyle(fontSize: 40, color: Colors.white),
             ),
             color: Colors.green,

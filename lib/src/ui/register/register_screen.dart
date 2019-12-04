@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {
-  final UserRepository _userRepository;
-
   const RegisterScreen({Key key, @required UserRepository userRepository}) 
     : assert(userRepository != null),
       _userRepository = userRepository,
       super(key: key);
+
+  final UserRepository _userRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(title: Text(REGISTER_TITLE)),
       body: Center(
         child: BlocProvider<RegisterBloc>(
-          builder: (context) => RegisterBloc(userRepository: _userRepository),
+          create: (BuildContext context) => RegisterBloc(userRepository: _userRepository),
           child: RegisterForm(),
         ),
       ),

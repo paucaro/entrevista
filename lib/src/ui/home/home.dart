@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatelessWidget {
+  const Home({Key key, this.user}) : super(key: key);
+
   final FirebaseUser user;
 
-  const Home({Key key, this.user}) : super(key: key);
-  
   @override
   Widget build(BuildContext context) {
     return BlocProvider<NavigationBloc>(
-      builder: (context) => NavigationBloc(),
+      create: (BuildContext context) => NavigationBloc(),
       child: HomeScreen(user: user),
     );
   }

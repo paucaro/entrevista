@@ -2,7 +2,8 @@ import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthenticationEvent extends Equatable {
-  AuthenticationEvent([List props = const []]) : super(props);
+  @override
+  List<Object> get props => [];
 }
 
 /// AppStarted event notify the bloc it needs to check if 

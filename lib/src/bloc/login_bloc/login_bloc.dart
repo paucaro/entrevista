@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:entrevista_ff/src/bloc/login_bloc/bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/user_repository.dart';
@@ -6,29 +7,29 @@ import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserRepository _userRepository;
-
   LoginBloc({
     @required UserRepository userRepository,
   })  : assert(userRepository != null),
         _userRepository = userRepository;
 
+  final UserRepository _userRepository;
+
   @override
   LoginState get initialState => LoginState.empty();
 
   @override
-  Stream<LoginState> transform(
+  Stream<LoginState> transformEvents(
     Stream<LoginEvent> events, 
     Stream<LoginState> Function(LoginEvent event) next
   ) {
     final observableStream = events as Observable<LoginEvent>;
     final nonDebounceStream = observableStream.where((event) {
-      return (event is! EmailChanged && event is! PasswordChanged);
+      return event is! EmailChanged && event is! PasswordChanged;
     });
     final debounceStream = observableStream.where((event) {
-      return (event is EmailChanged || event is PasswordChanged);
+      return event is EmailChanged || event is PasswordChanged;
     }).debounceTime(Duration(milliseconds: 300));
-    return super.transform(nonDebounceStream.mergeWith([debounceStream]), next);
+    return super.transformEvents(nonDebounceStream.mergeWith([debounceStream]), next);
   }
 
   @override
@@ -48,13 +49,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Stream<LoginState> _mapEmailChangedToState(String email) async* {
-    yield currentState.update(
+    yield state.update(
       isEmailValid: Validators.isValidEmail(email),
     );
   }
 
   Stream<LoginState> _mapPasswordChagedToState(String password) async* {
-    yield currentState.update(
+    yield state.update(
       isPasswordValid: Validators.isValidPassword(password),
     );
   }

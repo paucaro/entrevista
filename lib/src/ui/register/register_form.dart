@@ -34,11 +34,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     
     return BlocListener<RegisterBloc, RegisterState>(
-      listener: (context, state) {
+      listener: (BuildContext context, RegisterState state) {
         if (state.isSubmitting) {
           Scaffold.of(context)
             ..hideCurrentSnackBar()
@@ -48,14 +48,14 @@ class _RegisterFormState extends State<RegisterForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(REGISTERING_IN),
-                    CircularProgressIndicator(),
+                    const CircularProgressIndicator(),
                   ],
                 ),
               )
             );
         }
         if (state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).dispatch(LoggedIn());
+          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
           Navigator.of(context).pop();
         }
         if (state.isFailure) {
@@ -76,7 +76,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       },
       child: BlocBuilder<RegisterBloc, RegisterState>(
-        builder: (context, state) {
+        builder: (BuildContext context, RegisterState state) {
           return Center(
             child: Container(
               width: width * NUMBER_EIGHTY_PERCENT,
@@ -132,19 +132,19 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _onEmailChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       EmailChanged(email: _emailController.text),
     );
   }
 
   void _onPasswordChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       PasswordChanged(password: _passwordController.text),
     );
   }
 
   void _onFormSubmitted() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       Submitted(
         email: _emailController.text,
         password: _passwordController.text,

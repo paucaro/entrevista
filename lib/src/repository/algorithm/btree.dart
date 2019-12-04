@@ -1,20 +1,20 @@
 class BNode {
+  /// Initial constructor BNode
+  BNode(this.t, this.parent) {
+    // this.t = t;assign size
+    // this.parent = parent;assign parent
+    key = List<dynamic>(2 * t - 1); // array of proper size
+    child = List<BNode>(2 * t); // array of refs proper size
+    leaf = true; // everynode is leaf at first;
+    count = 0; // until we add keys later
+  }
+
   int t; // variable to determine order of tree
   int count; // number keys in node
   List<dynamic> key; //array of key values
   List<BNode> child; // array of references
   bool leaf;
   BNode parent;
-
-  /// Initial constructor BNode
-  BNode(int t, BNode parent) {
-    this.t = t; // assign size
-    this.parent = parent; // assign parent
-    this.key = List<dynamic>(2 * t - 1); // array of proper size
-    this.child = List<BNode>(2 * t); // array of refs proper size
-    this.leaf = true; // everynode is leaf at first;
-    this.count = 0; // until we add keys later
-  }
 
   /// Return key value at index position
   dynamic getValue(int index) {
@@ -28,14 +28,13 @@ class BNode {
 }
 
 class BTree {
+  /// Constructor for tree
+  BTree(this.order) {
+    root = BNode(order, null);
+  }
+
   int order; // order of tree
   BNode root; // every tree has at least a root node
-
-  /// Constructor for tree
-  BTree(int order) {
-    this.order = order;
-    this.root = BNode(order, null);
-  }
 
   /// Search for given node where we want to insert a key value
   BNode search(BNode root, dynamic key) {
@@ -67,7 +66,7 @@ class BTree {
 
   /// Split node to insert into if it's full
   void split(BNode x, int i, BNode y) {
-    BNode z = BNode(order, null); // extra node to split
+    final BNode z = BNode(order, null); // extra node to split
     z.leaf = y.leaf; // set boolean to same as y
     z.count = order - 1; //updated size
     for (int j = 0; j < order - 1; j++) {
@@ -116,7 +115,9 @@ class BTree {
       }
       if (x.child[j].count == order * 2 - 1) {
         split(x, j, x.child[j]); // call split node x's ith child
-        if (key > x.key[j]) j++;
+        if (key > x.key[j]) {
+          j++;
+        }
       }
 
       nonfullInsert(x.child[j], key); // recurse
@@ -125,10 +126,10 @@ class BTree {
 
   /// Insert in general, it will call insert nonfull if needed
   void insert(BTree t, dynamic key) {
-    BNode r = t.root; //find node to be inserted, starting at root node
+    final BNode r = t.root; //find node to be inserted, starting at root node
     if (r.count == 2 * t.order - 1) {
       //if is full
-      BNode s = BNode(t.order, null); // new node
+      final BNode s = BNode(t.order, null); // new node
       // Initialize node:
       t.root = s;
       s.leaf = false;
@@ -173,13 +174,15 @@ class BTree {
   /// Then iterate through key list until get node, will assign k[i] = k[+1] overwriting 
   /// key to delete and keeping blank spots out as well.
   
-  //TODO: Missing implement all cases of deleting
+  //Missing implement all cases of deleting
   void deleteKey(BTree t, dynamic key) {
     BNode temp = BNode(order, null); // temp BNode
     temp = search(t.root, key); // call search method on tree for key
     if (temp.leaf && temp.count > order - 1) {
       int i = 0;
-      while (key > temp.getValue(i)) i++;
+      while (key > temp.getValue(i)) {
+        i++;
+      }
       for (int j = i; j < 2 * order - 2; j++) {
         temp.key[j] = temp.getValue(j + 1);
       }

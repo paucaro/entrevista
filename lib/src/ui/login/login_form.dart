@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginForm extends StatefulWidget {
-  final UserRepository _userRepository;
+  const LoginForm({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
 
-  const LoginForm({Key key, @required UserRepository userRepository}) 
-    : assert(userRepository != null),
-      _userRepository = userRepository,
-      super(key: key);
+  final UserRepository _userRepository;
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -29,7 +29,7 @@ class _LoginFormState extends State<LoginForm> {
   UserRepository get _userRepository => widget._userRepository;
 
   bool get isPopulated =>
-    _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
   bool isLoginButtonEnabled(LoginState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
@@ -45,11 +45,11 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
 
     return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
+      listener: (BuildContext context, LoginState state) {
         if (state.isFailure) {
           Scaffold.of(context)
             ..hideCurrentSnackBar()
@@ -72,18 +72,18 @@ class _LoginFormState extends State<LoginForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(LOGGING_IN),
-                    CircularProgressIndicator(),
+                    const CircularProgressIndicator(),
                   ],
                 ),
               ),
             );
         }
-        if(state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).dispatch(LoggedIn());
+        if (state.isSuccess) {
+          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
-        builder: (context, state) {
+        builder: (BuildContext context, LoginState state) {
           return Center(
             child: Container(
               width: width * NUMBER_EIGHTY_PERCENT,
@@ -96,12 +96,11 @@ class _LoginFormState extends State<LoginForm> {
                       width: width * NUMBER_THIRTY_PERCENT,
                       height: height * NUMBER_THIRTY_PERCENT,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(ASSETS_LOGO),
-                        )
-                      ),
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(ASSETS_LOGO),
+                          )),
                     ),
                     TextFormField(
                       controller: _emailController,
@@ -135,8 +134,8 @@ class _LoginFormState extends State<LoginForm> {
                         children: <Widget>[
                           LoginButton(
                             onPressed: isLoginButtonEnabled(state)
-                              ? _onFormSubmitted
-                              : null,
+                                ? _onFormSubmitted
+                                : null,
                           ),
                           GoogleLoginButton(),
                           CreateAccountButton(userRepository: _userRepository)
@@ -161,23 +160,21 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void _onEmailChanged() {
-    _loginBloc.dispatch(
+    _loginBloc.add(
       EmailChanged(email: _emailController.text),
     );
   }
 
   void _onPasswordChanged() {
-    _loginBloc.dispatch(
+    _loginBloc.add(
       PasswordChanged(password: _passwordController.text),
     );
   }
 
   void _onFormSubmitted() {
-    _loginBloc.dispatch(
-      LoginWithCredentialsPressed(
-        email: _emailController.text,
-        password: _passwordController.text,
-      )
-    );
+    _loginBloc.add(LoginWithCredentialsPressed(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
   }
 }

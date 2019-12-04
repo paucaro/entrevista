@@ -11,9 +11,9 @@ class TeoriaScreen extends StatelessWidget {
             child: Container(
               height: 200,
               width: 200,
-              alignment: Alignment(0, 0),
+              alignment: const Alignment(0, 0),
               child: Text(
-                "Page Teoria",
+                'Page Teoria',
                 style: TextStyle(fontSize: 40, color: Colors.white),
               ),
               color: Colors.yellow,
@@ -22,7 +22,7 @@ class TeoriaScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: RaisedButton(
-            child: Text('Holi Boli'),
+            child: const Text('Holi Boli'),
             onPressed: () {
               MiningText('Trabajar es agobiante pero el estado es cool');
               

@@ -1,5 +1,5 @@
 /// Stop words from https://countwordsfree.com/stopwords/spanish
-const UNNECESSARY_WORDS = [
+const List<String> UNNECESSARY_WORDS = [
   'a',
   'actualmente',
   'adelante',

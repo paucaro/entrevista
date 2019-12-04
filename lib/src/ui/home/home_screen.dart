@@ -9,9 +9,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key, @required this.user}) : super(key: key);
+  
   final FirebaseUser user;
-
-  HomeScreen({Key key, @required this.user}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   CircleAvatar(
                     backgroundImage: widget.user.photoUrl != null
                         ? NetworkImage(widget.user.photoUrl)
-                        : AssetImage('assets/default-user.png'),
+                        : const AssetImage('assets/default-user.png'),
                   )
                 ],
                 accountName: widget.user.displayName != null
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.pop(context);
                     BlocProvider.of<NavigationBloc>(context)
-                        .dispatch(NavigationEvent.eventTeoria);
+                        .add(NavigationEvent.eventTeoria);
                   }),
               ListTile(
                 leading: Icon(Icons.border_color),
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Navigator.pop(context);
                   BlocProvider.of<NavigationBloc>(context)
-                      .dispatch(NavigationEvent.eventPractica);
+                      .add(NavigationEvent.eventPractica);
                 },
               ),
               ListTile(
@@ -61,9 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text(LOGOUT_BUTTON),
                 onTap: () {
                   Navigator.pop(context);
-                  BlocProvider.of<AuthenticationBloc>(context).dispatch(
-                    LoggedOut(),
-                  );
+                  BlocProvider.of<AuthenticationBloc>(context)
+                    .add(LoggedOut());
                 },
               ),
             ],

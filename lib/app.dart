@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
-  final UserRepository _userRepository;
-
-  App({Key key, @required UserRepository userRepository})
+  const App({Key key, @required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);
+  
+  final UserRepository _userRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class App extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
+        builder: (BuildContext context, AuthenticationState state) {
           if (state is Uninitialized) {
             return SplashScreen();
           }
@@ -33,6 +33,7 @@ class App extends StatelessWidget {
           if (state is Authenticated) {
             return Home(user: state.user);
           }
+          return Container();
         },
       ),
     );
