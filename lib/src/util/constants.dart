@@ -39,6 +39,7 @@ const String SPLASH_SCREEN_PHRASE = 'Bienvenido \n Aprende y Practica';
 const String LOGOUT_BUTTON = 'Cerrar Sesión';
 const String TEORIA_BUTTON = 'Aprender';
 const String PRACTICA_BUTTON = 'Practicar';
+const String INICIO_BUTTON = 'Inicio';
 
 
 /// NUMBER
@@ -54,5 +55,21 @@ const NUMBER_THIRTY_PERCENT = 0.30;
 /// RUTAS
 /// ASSETS
 const String ASSETS_LOGO = 'assets/logo_imagen.png';
+const String ASSETS_LOGO_TRANS = 'assets/logo.png';
 const String PATH_TEORIA = '/teoria';
 const String PATH_PRACTICA = '/practica';
+
+/// FRASES
+/// HOME - WELCOME
+const List<String> LIST_FRASES_INTERVIEW = [
+  'Uno de los mayores temores que enfrentamos al buscar empleo es responder preguntas extrañas en las entrevistas de trabajo.',
+  'Aunque muchas veces la entrevista parezca desalentador, recuerda que es una oportunidad para mostrar tus fortalezas y tu personalidad.',
+  'Para reducir el miedo a una entrevista lo más recomendable es que te prepares correctamente.',
+  'Cuando estés frente a la persona que te entrevistara debes olvidarte de todos tus problemas y pensar en que todo saldrá bien, estoy segura que lo puedes hacer.',
+  'Solo debes demostrar que eres un buen profesional, ten confianza y la entrevista de trabajo tendrá un resultado positivo para ti.',
+  'Este es uno de los momentos más importantes en tu vida profesional y solo depende de ti para que las cosas salgan como las esperas, que tengas suerte en la entrevista laboral.',
+  'La entrevista de trabajo es solo un paso más para lograr tu objetivo, habla con seguridad, se honesto y demuestra que eres una persona valiosa en muchos aspectos.',
+  'Si una empresa desea entrevistarte es porque considera que cuentas las habilidades necesarias para el cargo, lo único que tienes que hacer es demostrarles que tienen razón.',
+  'Muchas personas competirán contigo por el mismo cargo y si quieres tener éxito deberás demostrar en la entrevista laboral que eres mejor que ellos, tú lo puedes hacer, confía en ti.',
+  'Las entrevistas de trabajo solo dura unos minutos pero la satisfacción de ser contratado por primera vez es algo que recordaras con alegría por siempre.'
+];

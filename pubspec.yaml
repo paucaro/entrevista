@@ -18,12 +18,21 @@ dependencies:
   meta: ^1.1.7
   font_awesome_flutter: ^8.5.0
   flutter_auth_buttons: ^0.6.0
+  flutter_offline: "^0.3.0"
+  data_connection_checker: ^0.3.4
+  flutter_custom_clippers: ^1.1.0
+  dart_random_choice: ^0.0.2
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons:
   pedantic:
+
+dependency_overrides:
+  flutter_offline: "^0.3.0"
+  connectivity: ^0.4.5+7
 
 flutter_icons:
   android: true
@@ -34,3 +43,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Vollkorn
+      fonts:
+        - asset: fonts/Vollkorn-Regular.ttf
+        - asset: fonts/Vollkorn-Italic.ttf
+          style: italic

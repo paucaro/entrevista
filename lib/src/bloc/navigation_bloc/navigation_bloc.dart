@@ -4,11 +4,14 @@ import 'package:bloc/bloc.dart';
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   
   @override
-  NavigationState get initialState => StateTeoria();
+  NavigationState get initialState => StateWelcome();
 
   @override
   Stream<NavigationState> mapEventToState(NavigationEvent event) async* {
     switch (event) {
+      case NavigationEvent.eventWelcome:
+        yield StateWelcome();
+        break;
       case NavigationEvent.eventTeoria:
         yield StateTeoria();
         break;

@@ -1,4 +1,6 @@
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
+import 'package:entrevista_ff/src/bloc/database_bloc/bloc.dart';
+import 'package:entrevista_ff/src/repository/db_repository.dart';
 import 'package:entrevista_ff/src/repository/user_repository.dart';
 import 'package:entrevista_ff/src/ui/home/home.dart';
 import 'package:entrevista_ff/src/ui/login/login_screen.dart';
@@ -6,34 +8,55 @@ import 'package:entrevista_ff/src/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@immutable
 class App extends StatelessWidget {
-  const App({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
-  
-  final UserRepository _userRepository;
-
+  final UserRepository _userRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.orange,
-        accentColor: Colors.yellowAccent,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (BuildContext context, AuthenticationState state) {
-          if (state is Uninitialized) {
-            return SplashScreen();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthenticationBloc>(
+          create: (context) {
+            return AuthenticationBloc(userRepository: _userRepository)
+              ..add(AppStarted());
+          },
+        ),
+        BlocProvider<DatabaseBloc>(
+          create: (context) {
+            return DatabaseBloc(dataBaseRespository: DataBaseRespository())
+              ..add(LoadDatabase());
+          },
+        )
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.orange,
+          accentColor: Colors.yellowAccent,
+        ),
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) {
+            return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                if (state is Uninitialized) {
+                  return SplashScreen();
+                }
+                if (state is Unauthenticated) {
+                  return LoginScreen(userRepository: _userRepository,);
+                }
+                if (state is Authenticated) {
+                  return MultiBlocProvider(
+                    providers: [],
+                    child: Home(user: state.user),
+                  );
+                }
+                return Center(child: const CircularProgressIndicator());
+              },
+            );
+          },
+          '/addDatabase': (context) {
+            return;
           }
-          if (state is Unauthenticated) {
-            return LoginScreen(userRepository: _userRepository);
-          }
-          if (state is Authenticated) {
-            return Home(user: state.user);
-          }
-          return Container();
         },
       ),
     );
