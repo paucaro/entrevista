@@ -4,7 +4,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -49,3 +49,16 @@ flutter:
         - asset: fonts/Vollkorn-Regular.ttf
         - asset: fonts/Vollkorn-Italic.ttf
           style: italic
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat/Montserrat-Regular.ttf
+        - asset: fonts/Montserrat/Montserrat-Italic.ttf
+          style: italic
+        - asset: fonts/Montserrat/Montserrat-Bold.ttf
+          weight: 700
+        - asset: fonts/Montserrat/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Montserrat/Montserrat-Medium.ttf
+          weight: 500
+        - asset: fonts/Montserrat/Montserrat-Light.ttf
+          weight: 300

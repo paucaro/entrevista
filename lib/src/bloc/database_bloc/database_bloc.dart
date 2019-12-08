@@ -23,7 +23,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
 
   Stream<DatabaseState> _mapLoadDatabaseToState() async* {
     try{
-      final listComp = await _dataBaseRespository.competencias().first;
+      final listComp = await _dataBaseRespository.getCompetencias().first;
       yield DatabaseLoaded(listComp);
     } catch(_) {
       yield DatabaseNotLoaded();

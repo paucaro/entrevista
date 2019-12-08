@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entrevista_ff/src/bloc/database_bloc/bloc.dart';
 import 'package:entrevista_ff/src/models/competencia.dart';
+import 'package:entrevista_ff/src/ui/practica/error.dart';
+import 'package:entrevista_ff/src/ui/practica/quiz_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -42,7 +44,7 @@ class _PracticaScreenState extends State<PracticaScreen> {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18.0),
+                            fontSize: 16.0),
                       ),
                     ),
                   ),
@@ -69,11 +71,12 @@ class _PracticaScreenState extends State<PracticaScreen> {
           return Center(child: const CircularProgressIndicator());
         }
         if (state is DatabaseNotLoaded) {
-          return Center(
-            child: const Text('Error al cargar las competencias'),
+          return const ErrorPage(
+            message:
+                'No se puede cargar las competencias, \n Verifique su conexión a Internet.',
           );
         }
-        return Container();
+        return const ErrorPage();
       },
     );
   }
@@ -83,13 +86,15 @@ class _PracticaScreenState extends State<PracticaScreen> {
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 1.0,
-      onPressed: () {},
+      onPressed: () => _competenciaPressed(context, competencia),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       color: Colors.grey.shade800,
       textColor: Colors.white70,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          if (competencia.iconData != null) Icon(competencia.iconData),
+          if (competencia.iconData != null) const SizedBox(height: 5.0),
           AutoSizeText(
             competencia.nombre,
             minFontSize: 10.0,
@@ -100,5 +105,16 @@ class _PracticaScreenState extends State<PracticaScreen> {
         ],
       ),
     );
+  }
+
+  dynamic _competenciaPressed(BuildContext context, Competencia competencia) {
+    showModalBottomSheet<dynamic>(
+        context: context,
+        builder: (sheetContext) => BottomSheet(
+              builder: (_) => QuizOptionsDialog(
+                competencia: competencia,
+              ),
+              onClosing: () {},
+            ));
   }
 }

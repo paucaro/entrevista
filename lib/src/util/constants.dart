@@ -73,3 +73,9 @@ const List<String> LIST_FRASES_INTERVIEW = [
   'Muchas personas competirán contigo por el mismo cargo y si quieres tener éxito deberás demostrar en la entrevista laboral que eres mejor que ellos, tú lo puedes hacer, confía en ti.',
   'Las entrevistas de trabajo solo dura unos minutos pero la satisfacción de ser contratado por primera vez es algo que recordaras con alegría por siempre.'
 ];
+
+/// STRINGS
+const String ID_GENERAL = '00';
+const String ALEATORIO = 'Aleatorio';
+const String DESCRIPCION_ALEATORIO = 'Conjunto aleatorio de las competencias';
+const String ICONGLOBE = 'globe';

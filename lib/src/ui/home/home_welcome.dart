@@ -79,7 +79,7 @@ class HomeWelcome extends StatelessWidget {
                           ),
                           Text(TEORIA_BUTTON,
                               style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold))
+                                  fontSize: 16.0))
                         ],
                       ),
                     ),
@@ -99,7 +99,7 @@ class HomeWelcome extends StatelessWidget {
                           Text(
                             PRACTICA_BUTTON,
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                                fontSize: 16.0),
                           )
                         ],
                       ),

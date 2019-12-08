@@ -13,7 +13,7 @@ abstract class DatabaseState extends Equatable {
 // database notLoaded
 class DatabaseLoading extends DatabaseState {
   @override
-  String toString() => 'Loading';
+  String toString() => 'Loading competencies';
 }
 
 class DatabaseLoaded extends DatabaseState {
@@ -30,5 +30,5 @@ class DatabaseLoaded extends DatabaseState {
 
 class DatabaseNotLoaded extends DatabaseState {
   @override
-  String toString() => 'Not Loaded';
+  String toString() => 'Competencies Not Loaded';
 }

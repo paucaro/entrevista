@@ -1,6 +1,4 @@
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
-import 'package:entrevista_ff/src/bloc/database_bloc/bloc.dart';
-import 'package:entrevista_ff/src/repository/db_repository.dart';
 import 'package:entrevista_ff/src/repository/user_repository.dart';
 import 'package:entrevista_ff/src/ui/home/home.dart';
 import 'package:entrevista_ff/src/ui/login/login_screen.dart';
@@ -21,17 +19,21 @@ class App extends StatelessWidget {
               ..add(AppStarted());
           },
         ),
-        BlocProvider<DatabaseBloc>(
-          create: (context) {
-            return DatabaseBloc(dataBaseRespository: DataBaseRespository())
-              ..add(LoadDatabase());
-          },
-        )
       ],
       child: MaterialApp(
+        title: 'Mi Entrevista',
         theme: ThemeData(
-          primaryColor: Colors.orange,
-          accentColor: Colors.yellowAccent,
+          primarySwatch: Colors.orange,
+          accentColor: Colors.purpleAccent,
+          fontFamily: 'Montserrat',
+          buttonColor: Colors.orange,
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.orange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)
+            ),
+            textTheme: ButtonTextTheme.primary
+          )
         ),
         debugShowCheckedModeBanner: false,
         routes: {
@@ -45,10 +47,7 @@ class App extends StatelessWidget {
                   return LoginScreen(userRepository: _userRepository,);
                 }
                 if (state is Authenticated) {
-                  return MultiBlocProvider(
-                    providers: [],
-                    child: Home(user: state.user),
-                  );
+                  return  Home(user: state.user);
                 }
                 return Center(child: const CircularProgressIndicator());
               },

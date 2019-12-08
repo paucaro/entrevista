@@ -1,7 +1,7 @@
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/navigation_bloc/bloc.dart';
 import 'package:entrevista_ff/src/ui/home/home_welcome.dart';
-import 'package:entrevista_ff/src/ui/practica/practica_screen.dart';
+import 'package:entrevista_ff/src/ui/practica/practica.dart';
 import 'package:entrevista_ff/src/ui/teoria/teoria_screen.dart';
 import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return TeoriaScreen();
           }
           if (state is StatePractica) {
-            return PracticaScreen();
+            return Practica();
           }
           return Container();
         }
