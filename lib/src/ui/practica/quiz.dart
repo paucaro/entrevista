@@ -1,6 +1,6 @@
 import 'package:entrevista_ff/src/bloc/preguntas_db_bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/db_repository.dart';
-import 'package:entrevista_ff/src/ui/practica/quiz_page.dart';
+import 'package:entrevista_ff/src/ui/practica/questions-quiz/quiz_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

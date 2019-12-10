@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entrevista_ff/src/bloc/database_bloc/bloc.dart';
 import 'package:entrevista_ff/src/models/competencia.dart';
-import 'package:entrevista_ff/src/ui/practica/error.dart';
-import 'package:entrevista_ff/src/ui/practica/quiz_options.dart';
+import 'package:entrevista_ff/src/ui/aditionals/error.dart';
+import 'package:entrevista_ff/src/ui/practica/questions-quiz/quiz_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -108,7 +108,7 @@ class _PracticaScreenState extends State<PracticaScreen> {
   }
 
   dynamic _competenciaPressed(BuildContext context, Competencia competencia) {
-    showModalBottomSheet<dynamic>(
+    showModalBottomSheet<Widget>(
         context: context,
         builder: (sheetContext) => BottomSheet(
               builder: (_) => QuizOptionsDialog(

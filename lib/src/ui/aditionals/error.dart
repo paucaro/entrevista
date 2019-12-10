@@ -13,8 +13,21 @@ class ErrorPage extends StatelessWidget {
         title: const Text('Error'),
         elevation: 0,
       ),
-      body: Container(
-        height: double.infinity,
+      body: ErrorWidgetPage(message: message,)
+    );
+  }
+}
+
+class ErrorWidgetPage extends StatelessWidget {
+  const ErrorWidgetPage({Key key, this.message = 'Se ha producido un error de red desconocido'})
+    : super(key: key);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -52,7 +65,6 @@ class ErrorPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

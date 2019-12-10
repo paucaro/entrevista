@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:entrevista_ff/src/models/competencia.dart';
-import 'package:entrevista_ff/src/ui/practica/error.dart';
+import 'package:entrevista_ff/src/ui/aditionals/error.dart';
 import 'package:entrevista_ff/src/ui/practica/quiz.dart';
 import 'package:flutter/material.dart';
 
@@ -47,12 +47,9 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           SizedBox(
               width: double.infinity,
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text(
-                    widget.competencia.descripcion,
-                    style: TextStyle(fontSize: 16.0),
-                  ),
+                child: Text(
+                  widget.competencia.descripcion,
+                  style: TextStyle(fontSize: 16.0),
                 ),
               )),
           const SizedBox(

@@ -25,6 +25,9 @@ class PreguntaDBBloc extends Bloc<PreguntaDBEvent, PreguntaDBState> {
 
   Stream<PreguntaDBState> _mapLoadPreguntaToState(
     String competenciaId, int noOfQuestions) async* {
+    
+    yield PreguntaDBLoading();
+    
     final List<Pregunta> listPreguntas = [];
     try {
       final Map<String, bool> mapCompetenciaPreguntas =

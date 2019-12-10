@@ -23,6 +23,7 @@ dependencies:
   flutter_custom_clippers: ^1.1.0
   dart_random_choice: ^0.0.2
   auto_size_text: ^2.1.0
+  bubble: ^1.1.9+1
 
 dev_dependencies:
   flutter_test:

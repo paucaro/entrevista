@@ -1,7 +1,7 @@
 import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/navigation_bloc/bloc.dart';
 import 'package:entrevista_ff/src/ui/home/home_welcome.dart';
-import 'package:entrevista_ff/src/ui/practica/practica.dart';
+import 'package:entrevista_ff/src/ui/practica/practica_main/practica.dart';
 import 'package:entrevista_ff/src/ui/teoria/teoria_screen.dart';
 import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
