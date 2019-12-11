@@ -61,52 +61,54 @@ class HomeWelcome extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: width * 0.45,
-                    height: height * 0.3,
-                    child: Card(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            Icons.local_library,
-                            size: 100.0,
-                            color: Colors.blue,
-                          ),
-                          Text(TEORIA_BUTTON,
-                              style: TextStyle(
-                                  fontSize: 16.0))
-                        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.local_library,
+                          size: 100.0,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.45,
-                    height: height * 0.3,
-                    child: Card(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            Icons.border_color,
-                            size: 100.0,
-                            color: Colors.green,
-                          ),
-                          Text(
-                            PRACTICA_BUTTON,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(TEORIA_BUTTON,
                             style: TextStyle(
-                                fontSize: 16.0),
-                          )
-                        ],
+                                fontSize: 16.0)),
+                      )
+                    ],
+                  ),
+                ),
+                Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.border_color,
+                          size: 100.0,
+                          color: Colors.green,
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          PRACTICA_BUTTON,
+                          style: TextStyle(
+                              fontSize: 16.0),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             )
           ],
         )

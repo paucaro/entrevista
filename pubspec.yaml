@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cloud_firestore: ^0.12.10+2
+  cloud_firestore: ^0.12.11
   firebase_auth: ^0.15.0+1
   google_sign_in: ^4.0.14
   flutter_bloc: ^2.1.1
@@ -24,12 +24,14 @@ dependencies:
   dart_random_choice: ^0.0.2
   auto_size_text: ^2.1.0
   bubble: ^1.1.9+1
+  connectivity: ^0.4.5+7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons:
   pedantic:
+
 
 dependency_overrides:
   flutter_offline: "^0.3.0"

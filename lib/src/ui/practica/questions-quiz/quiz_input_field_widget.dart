@@ -128,21 +128,4 @@ class _QuizInputFieldWidgetState extends State<QuizInputFieldWidget> {
   }
 }
 
-/*if (respuesta != null)
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Bubble(
-                    margin: const BubbleEdges.only(top: 10),
-                    alignment: Alignment.topRight,
-                    nip: BubbleNip.rightTop,
-                    shadowColor: Colors.purpleAccent,
-                    elevation: 2,
-                    child: Text(
-                      respuesta,
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                ),
-              ),*/
+

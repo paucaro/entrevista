@@ -59,7 +59,7 @@ class DataBaseRespository {
   }
 
   Stream<String> getRespuestaById(String idRespuesta) {
-    return guiaCollection.document(idRespuesta).snapshots().map((snapshot) {
+    return respuestaCollection.document(idRespuesta).snapshots().map((snapshot) {
       return snapshot.data['name'];
     });
   }

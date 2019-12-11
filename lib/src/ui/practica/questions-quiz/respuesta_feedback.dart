@@ -19,7 +19,7 @@ class RespuestaFeedback extends StatelessWidget {
         return RespuestaRBCBloc(dataBaseRespository: DataBaseRespository())
           ..add(LoadRespuesta(respuesta: respuesta, idPregunta: idPregunta));
       },
-      child: RespuestaFeedbackScreen(),
+      child: RespuestaFeedbackScreen(respuesta: respuesta,),
     );
   }
 }

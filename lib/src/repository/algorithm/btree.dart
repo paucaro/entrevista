@@ -84,9 +84,11 @@ class BTree {
       x.child[j + 1] = x.child[j]; // shift children of x
     }
     x.child[i + 1] = z; // reassign i+1 child of x
+
     for (int j = x.count; j > i; j--) {
-      x.key[j + 1] = x.key[j]; // shift keys
+      x.key[j] = x.key[j - 1]; // shift keys
     }
+
     x.key[i] = y.key[order - 1]; // push value up into root
     y.key[order - 1] = 0; // erase value where pushed from
     for (int j = 0; j < order - 1; j++) {
@@ -126,6 +128,7 @@ class BTree {
 
   /// Insert in general, it will call insert nonfull if needed
   void insert(BTree t, dynamic key) {
+    print('key ingresado :3: $key');
     final BNode r = t.root; //find node to be inserted, starting at root node
     if (r.count == 2 * t.order - 1) {
       //if is full

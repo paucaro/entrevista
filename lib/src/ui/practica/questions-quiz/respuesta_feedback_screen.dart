@@ -1,9 +1,15 @@
+import 'package:bubble/bubble.dart';
 import 'package:entrevista_ff/src/bloc/respuesta_rbc_bloc/bloc.dart';
 import 'package:entrevista_ff/src/ui/aditionals/error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RespuestaFeedbackScreen extends StatelessWidget {
+  const RespuestaFeedbackScreen({Key key, @required this.respuesta}) 
+    :super(key: key);
+
+  final String respuesta;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RespuestaRBCBloc, RespuestaRBCState>(
@@ -25,16 +31,42 @@ class RespuestaFeedbackScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              SizedBox(
-                width: double.infinity,
+              const SizedBox(height: 20.0),
+              if (respuesta != null)
+              Container(
+                alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Text(
-                    state.respuestaOther,
-                    style: TextStyle(fontSize: 16.0),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Bubble(
+                    margin: const BubbleEdges.only(top: 10),
+                    alignment: Alignment.topRight,
+                    color: const Color.fromRGBO(225, 255, 199, 1.0),
+                    nip: BubbleNip.rightTop,
+                    shadowColor: Colors.purpleAccent,
+                    elevation: 2,
+                    child: Text(
+                      respuesta,
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              if (state.respuestaOther != null)
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Bubble(
+                    margin: const BubbleEdges.only(top: 10),
+                    alignment: Alignment.topRight,
+                    nip: BubbleNip.leftTop,
+                    shadowColor: Colors.purpleAccent,
+                    elevation: 2,
+                    child: Text(
+                      state.respuestaOther,
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
               ),

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/respuesta_rbc_bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/db_repository.dart';
+import 'package:entrevista_ff/src/repository/textmining/mining_text.dart';
 import 'package:meta/meta.dart';
 
 class RespuestaRBCBloc extends Bloc<RespuestaRBCEvent, RespuestaRBCState> {
@@ -26,14 +27,31 @@ class RespuestaRBCBloc extends Bloc<RespuestaRBCEvent, RespuestaRBCState> {
       String idPregunta, String respuesta) async* {
     yield RespuestaRBCLoading();
     try {
-      final String idRespuesta =
-          await _dataBaseRespository.addNewRespuesta(respuesta);
+      // Get map of answers - ids answers
       final Map<String, bool> mapi =
-          await _dataBaseRespository.getRespuestas(idPregunta);
-      mapi[idRespuesta] = true;
+          await _dataBaseRespository.getRespuestas(idPregunta); 
+      final List<String> idRespuestas = mapi.keys.toList(); // Get list of answers
 
+      final List<String> respuestas = [];
+      for (var idRespuesta in idRespuestas) {
+        final String descripcionRespuesta = 
+          await _dataBaseRespository.getRespuestaById(idRespuesta).first;
+        respuestas.add(descripcionRespuesta);
+      }
+
+      
+
+      // TextMining of answer and list of answers
+      final String otherAnswer = MiningText(respuesta, respuestas).miningText();
+
+      final String idRespuesta =
+          await _dataBaseRespository.addNewRespuesta(respuesta); // Add answer and get id
+      
+       mapi[idRespuesta] = true; // Adding new answer
+
+      // Add to collection preguntas_respuestas
       await _dataBaseRespository.addNewRespuestaToPregunta(idPregunta, mapi);
-      String otherAnswer;
+
       yield RespuestaRBCDone(otherAnswer);
     } catch (_) {
       yield RespuestaRBCError();

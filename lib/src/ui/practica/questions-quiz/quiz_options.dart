@@ -46,10 +46,13 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           const SizedBox(height: 10.0),
           SizedBox(
               width: double.infinity,
-              child: SingleChildScrollView(
-                child: Text(
-                  widget.competencia.descripcion,
-                  style: TextStyle(fontSize: 16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Text(
+                    widget.competencia.descripcion,
+                    style: TextStyle(fontSize: 16.0),
+                  ),
                 ),
               )),
           const SizedBox(
