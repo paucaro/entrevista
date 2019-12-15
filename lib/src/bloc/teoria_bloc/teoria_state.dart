@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/models/topic.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class TeoriaState extends Equatable {
@@ -16,6 +17,13 @@ class TeoriaLoading extends TeoriaState {
 }
 
 class TeoriaLoaded extends TeoriaState {
+  const TeoriaLoaded([this.topicos]);
+
+  final List<Topic> topicos;
+
+  @override
+  List<Object> get props => [topicos];
+
   @override
   String toString() => 'Teoria Loaded';
 }

@@ -2,7 +2,7 @@ import 'package:entrevista_ff/src/bloc/authentication_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/navigation_bloc/bloc.dart';
 import 'package:entrevista_ff/src/ui/home/home_welcome.dart';
 import 'package:entrevista_ff/src/ui/practica/practica_main/practica.dart';
-import 'package:entrevista_ff/src/ui/teoria/teoria_screen.dart';
+import 'package:entrevista_ff/src/ui/teoria/teoria.dart';
 import 'package:entrevista_ff/src/util/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return HomeWelcome();
           }
           if (state is StateTeoria) {
-            return TeoriaScreen();
+            return Teoria();
           }
           if (state is StatePractica) {
             return Practica();

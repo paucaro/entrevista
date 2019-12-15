@@ -25,6 +25,7 @@ dependencies:
   auto_size_text: ^2.1.0
   bubble: ^1.1.9+1
   connectivity: ^0.4.5+7
+  flare_flutter:
 
 dev_dependencies:
   flutter_test:

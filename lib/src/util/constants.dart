@@ -76,6 +76,21 @@ const List<String> LIST_FRASES_INTERVIEW = [
   'Las entrevistas de trabajo solo dura unos minutos pero la satisfacción de ser contratado por primera vez es algo que recordaras con alegría por siempre.'
 ];
 
+const List<String> LIST_FRASES_WELLDONE = [
+  'Sólo hay felicidad donde hay virtud y esfuerzo serio, pues la vida no es un juego. (Aristóteles).',
+  'Nuestra recompensa se encuentra en el esfuerzo y no en el resultado. Un esfuerzo total es una victoria completa. (Mahatma) Gandhi',
+  'Donde haya un árbol que plantar, plántalo tú. Donde haya un error que enmendar, enmiéndalo tú. Donde haya un esfuerzo que todos esquivan, hazlo tú. Sé tú el que aparta la piedra del camino. (Gabriela Mistral).',
+  'Con esfuerzo y esperanza todo se alcanza.',
+  'Nunca te canses de intentar que tu vida sea mejor, la perseverancia siempre tiene su recompensa.',
+  'Tanto más crece el esfuerzo, cuanto más consideramos la grandeza de lo emprendido.',
+  'No pierdas las fuerzas porque con este nuevo logro necesitaras muchas extras para continuar tu camino al éxito, animo que aún falta la mejor parte.',
+  'Un logro espectacular esta siempre precedido por una preparación espectacular.. (Robert H. Schuller).',
+  'Hay hombres que luchan un día y son buenos, hay quienes luchan muchos días y son muy buenos, hay quienes luchan por años y son mejores, pero están los que luchan toda la vida, esos son los imprescindibles.',
+  'Quiero felicitarte por tus nuevos logros, una vez más demuestras que todo con esfuerzo vale mucho más la pena',
+  'Los resultados son más victoriosos cuando en el camino te toco esforzarte mucho más, felicidades por tu nuevo logro',
+  'La pasión que pusiste durante todo este tiempo se verá reflejada en el amor que le tendrás a tu carrera, felicidades por tu nuevo logro',
+];
+
 /// STRINGS
 const String ID_GENERAL = '00';
 const String ALEATORIO = 'Aleatorio';
