@@ -6,8 +6,8 @@ import 'package:meta/meta.dart';
 
 class TopicBloc extends Bloc<TopicEvent, TopicState> {
   TopicBloc({@required TeoriaRepository teoriaRepository})
-    : assert(teoriaRepository != null),
-      _teoriaRepository = teoriaRepository;
+      : assert(teoriaRepository != null),
+        _teoriaRepository = teoriaRepository;
 
   final TeoriaRepository _teoriaRepository;
 
@@ -20,28 +20,28 @@ class TopicBloc extends Bloc<TopicEvent, TopicState> {
   ) async* {
     if (event is LoadTopic) {
       yield* _mapLoadTopicToState(event.idTopicTeoria);
-      
     }
   }
 
-  Stream<TopicState> _mapLoadTopicToState(String idTopicTeoria) 
-    async* {
-      yield TopicLoading();
-      try {
-        final Map<String, bool> mapSubTopics = 
+  Stream<TopicState> _mapLoadTopicToState(String idTopicTeoria) async* {
+    yield TopicLoading();
+    try {
+      final Map<String, bool> mapSubTopics =
           await _teoriaRepository.getSubTopic(idTopicTeoria);
-        
-        final List<String> listSubTopics = mapSubTopics.keys.toList();
 
-        final List<SubTopicList> listTopicBody = [];
-        for (var subTopicId in listSubTopics) {
-          final SubTopicList subTopicList = 
+      final List<String> listSubTopics = mapSubTopics.keys.toList();
+      listSubTopics.sort((a,b)=> a.compareTo(b));
+
+      final List<SubTopicList> listTopicBody = [];
+      for (var subTopicId in listSubTopics) {
+        final SubTopicList subTopicList =
             await _teoriaRepository.getSubTopicBodyById(subTopicId).first;
-          listTopicBody.add(subTopicList);
-        }
-        yield TopicLoaded(listTopicBody);
-      } catch (_) {
-        yield TopicNotLoaded();
+
+        listTopicBody.add(subTopicList);
       }
+      yield TopicLoaded(listTopicBody);
+    } catch (_) {
+      yield TopicNotLoaded();
     }
+  }
 }

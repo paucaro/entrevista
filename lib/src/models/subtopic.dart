@@ -22,4 +22,10 @@ class SubTopicList{
       snap.data['video']
     );
   }
+
+  set imageUrl(String imageUrl){
+    imageUrl = imageUrl;
+  }
+
+  
 }

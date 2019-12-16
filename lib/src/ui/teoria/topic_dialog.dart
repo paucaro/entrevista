@@ -26,44 +26,46 @@ class _TopicDialogState extends State<TopicDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16.0),
-          color: Colors.grey.shade200,
-          child: Text(
-            widget.topicName,
-            style: Theme.of(context).textTheme.title,
-          ),
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16.0),
+            color: Colors.grey.shade200,
             child: Text(
-              randomChoice<String>(LIST_FRASES_INTERVIEW),
-              style: TextStyle(fontSize: 16.0),
+              widget.topicName,
+              style: Theme.of(context).textTheme.title,
             ),
           ),
-        ),
-        const SizedBox(
-          height: 20.0,
-        ),
-        if (processing)
-          const CircularProgressIndicator()
-        else
-          RaisedButton(
-            child: const Text('Vamos a aprender!'),
-            onPressed: () => _startLearning('', ''),
+          const SizedBox(
+            height: 10.0,
           ),
-        const SizedBox(
-          height: 20.0,
-        )
-      ],
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                randomChoice<String>(LIST_FRASES_INTERVIEW),
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          if (processing)
+            const CircularProgressIndicator()
+          else
+            RaisedButton(
+              child: const Text('Vamos a aprender!'),
+              onPressed: () => _startLearning(widget.idTopic, widget.topicName),
+            ),
+          const SizedBox(
+            height: 20.0,
+          )
+        ],
+      ),
     );
   }
 
@@ -75,8 +77,8 @@ class _TopicDialogState extends State<TopicDialog> {
       Navigator.pop(context);
       Navigator.of(context).push(MaterialPageRoute<void>(
           builder: (_) => Topics(
-                idTopic: widget.idTopic,
-                topicName: widget.topicName,
+                idTopic: idTopic,
+                topicName: topicName,
               )));
     } on SocketException catch (_) {
       Navigator.pushReplacement(

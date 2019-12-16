@@ -26,6 +26,10 @@ dependencies:
   bubble: ^1.1.9+1
   connectivity: ^0.4.5+7
   flare_flutter:
+  firebase_storage: ^3.0.0
+  firebase_storage_image: ^0.4.0
+  youtube_player: ^3.5.0
+  percent_indicator: ^2.1.1+1
 
 dev_dependencies:
   flutter_test:

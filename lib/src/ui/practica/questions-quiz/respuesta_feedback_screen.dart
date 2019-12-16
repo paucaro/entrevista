@@ -147,7 +147,15 @@ class RespuestaFeedbackScreen extends StatelessWidget {
           ]);
         }
         if (state is RespuestaRBCLoading) {
-          return Center(child: const CircularProgressIndicator());
+          return Center(child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: const <Widget>[
+                CircularProgressIndicator(),
+                Expanded(child: Text('Obteniendo respuestas de otros usuarios'))
+              ],
+            ),
+          ));
         }
         if (state is RespuestaRBCError) {
           return const ErrorWidgetPage(

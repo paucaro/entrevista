@@ -1,4 +1,5 @@
 import 'package:entrevista_ff/src/bloc/teoria_bloc/bloc.dart';
+import 'package:entrevista_ff/src/repository/perfil_repository.dart';
 import 'package:entrevista_ff/src/repository/teoria_repository.dart';
 import 'package:entrevista_ff/src/ui/teoria/teoria_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class Teoria extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<TeoriaBloc>(
       create: (context) { 
-        return TeoriaBloc(teoriaRepository: TeoriaRepository())
+        return TeoriaBloc(teoriaRepository: TeoriaRepository(), perfilRepository: PerfilRepository())
           ..add(LoadTeoria());
       },
       child: TeoriaScreen(),

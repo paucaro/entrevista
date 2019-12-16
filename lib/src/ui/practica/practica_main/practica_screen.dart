@@ -41,7 +41,7 @@ class _PracticaScreenState extends State<PracticaScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 8.0),
                       child: Text(
-                        'Selecciona una competencia y empieza a practicar',
+                        'Estas son las competencias que más se evaluan para los perfiles de Analista, Programador y Administrador de Sistemas. ¡¡Selecciona una y empieza a practica!!',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
@@ -73,12 +73,12 @@ class _PracticaScreenState extends State<PracticaScreen> {
           return Loading();
         }
         if (state is DatabaseNotLoaded) {
-          return const ErrorPage(
+          return const ErrorPageReturn(
             message:
                 'No se puede cargar las competencias, \n Verifique su conexión a Internet.',
           );
         }
-        return const ErrorPage();
+        return const ErrorPageReturn();
       },
     );
   }

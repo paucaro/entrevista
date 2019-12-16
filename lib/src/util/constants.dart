@@ -91,6 +91,11 @@ const List<String> LIST_FRASES_WELLDONE = [
   'La pasión que pusiste durante todo este tiempo se verá reflejada en el amor que le tendrás a tu carrera, felicidades por tu nuevo logro',
 ];
 
+const String APRENDE_FRASE = '¡Mientras más conocimiento adquieras, tu rango irá subiendo hasta llegar a Gran Maestro del conocimiento de entrevistas!';
+//'En este módulo aprenderás conceptos de la entrevista de trabajo mediante texto, imágenes y/o videos. \n\n ¡Mientras más conocimiento adquieras, tu nivel irá subiendo hasta llegar a Gran Maestro del conocimiento de entrevistas!';
+const String PRACTICA_FRASE = 'Cuando respondas a una pregunta, se te mostrará la respuesta más parecida que haya sido ingresada por otro usuario';
+// 'En este módulo podrás practicar respondiendo preguntas de acuerdo a las competencias que más se evaluan para los perfiles de Analista, Programador y Administrador de Sistemas. \n\n Cuando respondas a una pregunta, se te mostrará la respuesta más parecida que haya sido ingresada por otro usuario';
+
 /// STRINGS
 const String ID_GENERAL = '00';
 const String ALEATORIO = 'Aleatorio';

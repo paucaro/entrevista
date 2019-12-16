@@ -17,12 +17,13 @@ class TeoriaLoading extends TeoriaState {
 }
 
 class TeoriaLoaded extends TeoriaState {
-  const TeoriaLoaded([this.topicos]);
+  const TeoriaLoaded([this.topicos, this.progress]);
 
   final List<Topic> topicos;
+  final Map<String, bool> progress;
 
   @override
-  List<Object> get props => [topicos];
+  List<Object> get props => [topicos, progress];
 
   @override
   String toString() => 'Teoria Loaded';

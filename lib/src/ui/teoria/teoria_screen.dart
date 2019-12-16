@@ -7,6 +7,7 @@ import 'package:entrevista_ff/src/ui/teoria/topic_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class TeoriaScreen extends StatefulWidget {
   @override
@@ -15,12 +16,14 @@ class TeoriaScreen extends StatefulWidget {
 
 class _TeoriaScreenState extends State<TeoriaScreen> {
   List<Topic> topicos = <Topic>[];
+  Map<String, bool> mapProgress = {};
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TeoriaBloc, TeoriaState>(
       builder: (context, state) {
         if (state is TeoriaLoaded) {
           topicos = state.topicos;
+          mapProgress = state.progress;
           return Stack(
             children: <Widget>[
               ClipPath(
@@ -50,8 +53,8 @@ class _TeoriaScreenState extends State<TeoriaScreen> {
                     SliverPadding(
                       padding: const EdgeInsets.all(16.0),
                       sliver: SliverList(
-                        delegate:
-                            SliverChildListDelegate(_buildTopicList(context, topicos)),
+                        delegate: SliverChildListDelegate(
+                            _buildTopicList(context, topicos, mapProgress)),
                       ),
                     )
                   ])
@@ -62,17 +65,18 @@ class _TeoriaScreenState extends State<TeoriaScreen> {
           return Loading();
         }
         if (state is TeoriaNotLoaded) {
-          return const ErrorPage(
+          return const ErrorPageReturn(
             message:
                 'No se puede cargas los topicos. \n Verifique su conexión a internet.',
           );
         }
-        return const ErrorPage();
+        return const ErrorPageReturn();
       },
     );
   }
 
-  List _buildTopicList(BuildContext context, List<Topic> topicos) {
+  List _buildTopicList(BuildContext context, List<Topic> topicos,
+      Map<String, bool> mapProgress) {
     final List<Widget> listItems = [];
 
     for (int j = 0; j < topicos.length; j++) {
@@ -92,13 +96,7 @@ class _TeoriaScreenState extends State<TeoriaScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Colors.purpleAccent,
-                  child: Text(
-                    item.order.toString(),
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                showProgress(item.id, item.order.toString()),
                 Expanded(
                   child: AutoSizeText(
                     item.name,
@@ -116,16 +114,43 @@ class _TeoriaScreenState extends State<TeoriaScreen> {
     return listItems;
   }
 
+  Widget showProgress(String idTopic, String order) {
+    return CircularPercentIndicator(
+      radius: 60.0,
+      lineWidth: 5.0,
+      percent: (mapProgress[idTopic]) ? 1.0 : 0.0,
+      center: CircleAvatar(
+        backgroundColor: Colors.orange,
+        child: Column(
+          children: <Widget>[
+            Text(
+              order,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              (mapProgress[idTopic]) ? '100%' : '0%',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 9.0,
+                  fontStyle: FontStyle.italic),
+            )
+          ],
+        ),
+      ),
+      progressColor: Colors.green,
+    );
+  }
+
   void _showTopic(BuildContext context, String idTopic, String topicName) {
     showModalBottomSheet<Widget>(
-      context: context,
-      builder: (sheetContext) => BottomSheet(
-        builder: (_) => TopicDialog(
-          idTopic: idTopic,
-          topicName: topicName
-        ),
-        onClosing: () {},
-      )
-    );
+        context: context,
+        builder: (sheetContext) => BottomSheet(
+              builder: (_) =>
+                  TopicDialog(idTopic: idTopic, topicName: topicName),
+              onClosing: () {},
+            ));
   }
 }

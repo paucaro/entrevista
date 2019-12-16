@@ -7,7 +7,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Loading'),
+        title: const Text('Loading ...'),
         elevation: 0,
       ),
       body: Container(
