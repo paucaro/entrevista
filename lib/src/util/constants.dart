@@ -60,6 +60,14 @@ const String ASSETS_LOGO = 'assets/logo_imagen.png';
 const String ASSETS_LOGO_TRANS = 'assets/logo.png';
 const String PATH_TEORIA = '/teoria';
 const String PATH_PRACTICA = '/practica';
+const String ASSETS_PRINCIPIANTE = 'assets/principiante.png';
+const String ASSETS_BRONCE = 'assets/bronce.png';
+const String ASSETS_PLATA = 'assets/plata.png';
+const String ASSETS_ORO = 'assets/oro.png';
+const String ASSETS_PLATINO = 'assets/platino.png';
+const String ASSETS_DIAMANTE = 'assets/diamante.png';
+const String ASSETS_HEROICO = 'assets/heroico.png';
+const String ASSETS_GRAN_MAESTRO = 'assets/gran_maestro.png';
 
 /// FRASES
 /// HOME - WELCOME

@@ -41,7 +41,7 @@ class _PracticaScreenState extends State<PracticaScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 8.0),
                       child: Text(
-                        'Estas son las competencias que más se evaluan para los perfiles de Analista, Programador y Administrador de Sistemas. ¡¡Selecciona una y empieza a practica!!',
+                        'Estas son las competencias que más se evaluan para los perfiles de Analista, Programador y Administrador de Sistemas. ¡¡Selecciona una y empieza a practicar!!',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,

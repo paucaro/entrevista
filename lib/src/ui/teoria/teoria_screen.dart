@@ -121,23 +121,12 @@ class _TeoriaScreenState extends State<TeoriaScreen> {
       percent: (mapProgress[idTopic]) ? 1.0 : 0.0,
       center: CircleAvatar(
         backgroundColor: Colors.orange,
-        child: Column(
-          children: <Widget>[
-            Text(
-              order,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              (mapProgress[idTopic]) ? '100%' : '0%',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 9.0,
-                  fontStyle: FontStyle.italic),
-            )
-          ],
+        child: Text(
+          order,
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold),
         ),
       ),
       progressColor: Colors.green,

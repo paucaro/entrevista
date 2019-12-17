@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/bloc/navigation_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/topic_bloc/bloc.dart';
 import 'package:entrevista_ff/src/models/subtopic.dart';
 import 'package:entrevista_ff/src/ui/aditionals/error.dart';
@@ -172,15 +173,17 @@ class _TopicScreenState extends State<TopicScreen> {
     );
   }
 
-  void _nextSubmit() {
+  Future _nextSubmit() async {
     if (_currentIndex < (listSubTopic.length - 1)) {
       setState(() {
         _currentIndex++;
       });
     } else {
       BlocProvider.of<UpdateLevelBloc>(context)
-        .add(UpdateLevel(widget.idTopic));
+          .add(UpdateLevel(widget.idTopic));
       Navigator.pop(context, true);
+      BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.eventTeoria);
+      //Navigator.pop(context, true);
     }
   }
 

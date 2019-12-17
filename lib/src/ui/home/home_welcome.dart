@@ -8,7 +8,7 @@ class HomeWelcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    //final double height = MediaQuery.of(context).size.height;
     return Stack(
       children: <Widget>[
         ClipPath(
@@ -22,7 +22,7 @@ class HomeWelcome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
                   width: width * 0.6,
@@ -34,7 +34,7 @@ class HomeWelcome extends StatelessWidget {
                         image: AssetImage(ASSETS_LOGO),
                       )),
                 ),
-              ),
+              ),*/
               showPerfil(),
               Row(
                 children: <Widget>[
@@ -47,7 +47,7 @@ class HomeWelcome extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: width * 0.8,
+                    width: width * 0.75,
                     color: const Color.fromRGBO(255, 255, 255, 0.2),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),

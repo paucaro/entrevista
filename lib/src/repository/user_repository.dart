@@ -55,9 +55,6 @@ class UserRepository {
     final Map<String, dynamic> data = <String, dynamic>{
       'uid': user.uid,
       'email': user.email,
-      'phoneNumber': user.phoneNumber,
-      'photoURL': user.photoUrl,
-      'displayName': user.displayName,
     };
     return ref.setData(data, merge: true);
   }

@@ -1,3 +1,4 @@
+import 'package:entrevista_ff/src/bloc/navigation_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/topic_bloc/bloc.dart';
 import 'package:entrevista_ff/src/bloc/update_level_bloc/bloc.dart';
 import 'package:entrevista_ff/src/repository/perfil_repository.dart';
@@ -26,6 +27,11 @@ class Topics extends StatelessWidget {
         BlocProvider<UpdateLevelBloc>(
           create: (context) {
             return UpdateLevelBloc(perfilRepository: PerfilRepository());
+          },
+        ),
+        BlocProvider<NavigationBloc>(
+          create: (context) {
+            return NavigationBloc();
           },
         )
       ],
