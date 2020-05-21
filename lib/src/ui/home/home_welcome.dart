@@ -85,7 +85,7 @@ class HomeWelcome extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(TEORIA_BUTTON,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16.0)),
                             ),
                           ],
@@ -120,7 +120,7 @@ class HomeWelcome extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     PRACTICA_BUTTON,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16.0),
                                   ),
                                 )

@@ -40,7 +40,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             color: Colors.grey.shade200,
             child: Text(
               widget.competencia.nombre,
-              style: Theme.of(context).textTheme.title.copyWith(),
+              style: Theme.of(context).textTheme.headline6.copyWith(),
             ),
           ),
           const SizedBox(height: 10.0),
@@ -51,7 +51,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                 child: SingleChildScrollView(
                   child: Text(
                     widget.competencia.descripcion,
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                 ),
               )),

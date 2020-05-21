@@ -35,7 +35,7 @@ class _TopicDialogState extends State<TopicDialog> {
             color: Colors.grey.shade200,
             child: Text(
               widget.topicName,
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.headline6
             ),
           ),
           const SizedBox(
@@ -47,7 +47,7 @@ class _TopicDialogState extends State<TopicDialog> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 randomChoice<String>(LIST_FRASES_INTERVIEW),
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
               ),
             ),
           ),

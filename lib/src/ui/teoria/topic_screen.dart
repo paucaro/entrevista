@@ -96,7 +96,7 @@ class _TopicScreenState extends State<TopicScreen> {
                                       padding: const EdgeInsets.all(18.0),
                                       child: Text(
                                         listSubTopic[_currentIndex].concepto,
-                                        style: TextStyle(fontSize: 16.0),
+                                        style: const TextStyle(fontSize: 16.0),
                                       ),
                                     )),
                                 if (listSubTopic[_currentIndex].imageBool)
@@ -124,7 +124,7 @@ class _TopicScreenState extends State<TopicScreen> {
                                       source: listSubTopic[_currentIndex].video,
                                       quality: YoutubeQuality.HD,
                                       autoPlay: false,
-                                      controlsTimeOut: Duration(seconds: 4),
+                                      controlsTimeOut: const Duration(seconds: 4),
                                       playerMode: YoutubePlayerMode.DEFAULT,
                                       onError: (error) {
                                         print(error);

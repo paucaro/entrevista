@@ -50,6 +50,7 @@ class _QuizInputFieldWidgetState extends State<QuizInputFieldWidget> {
       }
     }, child: BlocBuilder<RespuestasBDBloc, RespuestasDBState>(
       builder: (context, state) {
+        const color2 = Color(0xff203152);
         return Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -62,13 +63,13 @@ class _QuizInputFieldWidgetState extends State<QuizInputFieldWidget> {
                     Flexible(
                       child: Container(
                         child: TextFormField(
-                          style: TextStyle(
-                              color: const Color(0xff203152), fontSize: 15.0),
+                          style: const TextStyle(
+                              color: color2, fontSize: 15.0),
                           controller: _respuestaController,
-                          decoration: InputDecoration.collapsed(
+                          decoration: const InputDecoration.collapsed(
                             hintText: 'Escribe tu respuesta...',
                             hintStyle:
-                                TextStyle(color: const Color(0xffaeaeae)),
+                                TextStyle(color: Color(0xffaeaeae)),
                           ),
                           keyboardType: TextInputType.multiline,
                           maxLines: 7,

@@ -31,7 +31,7 @@ class RespuestaFeedbackScreen extends StatelessWidget {
                     Icon(Icons.question_answer),
                     Text(
                       'Respuesta',
-                      style: Theme.of(context).textTheme.title.copyWith(),
+                      style: Theme.of(context).textTheme.headline6.copyWith(),
                     )
                   ],
                 ),
@@ -55,7 +55,7 @@ class RespuestaFeedbackScreen extends StatelessWidget {
                 ),
               Container(
                 color: Colors.pink, height: 350.0,
-                child: FlareActor('assets/menCool.flr',
+                child: const FlareActor('assets/menCool.flr',
               alignment:Alignment.center, fit:BoxFit.contain, animation:'Celebrate Duplicate'),
                 ),
               const SizedBox(height: 20.0),
@@ -137,7 +137,7 @@ class RespuestaFeedbackScreen extends StatelessWidget {
                 color: Colors.grey.shade200,
                 child: Text(
                   randomChoice<String>(LIST_FRASES_WELLDONE),
-                  style: Theme.of(context).textTheme.title.copyWith(),
+                  style: Theme.of(context).textTheme.headline6.copyWith(),
                 ),
               ),
               

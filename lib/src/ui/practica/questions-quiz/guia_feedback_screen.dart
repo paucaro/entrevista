@@ -24,7 +24,7 @@ class GuiaFeedbackScreen extends StatelessWidget {
                     Icon(Icons.lightbulb_outline),
                     Text(
                       'Guía',
-                      style: Theme.of(context).textTheme.title.copyWith(),
+                      style: Theme.of(context).textTheme.headline6.copyWith(),
                     )
                   ],
                 ),
@@ -38,7 +38,7 @@ class GuiaFeedbackScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(18.0),
                   child: Text(
                     state.guia,
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                 ),
               ),
@@ -49,7 +49,7 @@ class GuiaFeedbackScreen extends StatelessWidget {
           );
         }
         if (state is GuiaLoading) {
-          return Center(child: const CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
         if (state is GuiaNotLoaded) {
           return const ErrorWidgetPage(

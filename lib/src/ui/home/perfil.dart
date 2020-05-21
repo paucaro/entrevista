@@ -49,7 +49,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                      child: Padding(
                        padding: const EdgeInsets.all(18.0),
                        child: Text('Rango: ' + getLevel(state.level),
-                style: TextStyle(fontSize: 20.0),),
+                style: const TextStyle(fontSize: 20.0),),
                      ),
                    ),
                 ]
@@ -58,7 +58,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
           );
         }
         if (state is PerfilLoading){
-          return Center(child: const CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
         if (state is PerfilNotLoaded) {
           return Container();

@@ -49,7 +49,7 @@ class App extends StatelessWidget {
                 if (state is Authenticated) {
                   return  Home(user: state.user);
                 }
-                return Center(child: const CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               },
             );
           },

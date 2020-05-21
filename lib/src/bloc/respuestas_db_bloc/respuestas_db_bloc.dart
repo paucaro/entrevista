@@ -18,7 +18,7 @@ class RespuestasBDBloc extends Bloc<RespuestaDBEvent, RespuestasDBState> {
     });
     final debounceStream = observableStream.where((event) {
       return event is RespuestaChanged;
-    }).debounceTime(Duration(milliseconds: 300));
+    }).debounceTime(const Duration(milliseconds: 300));
     return super
         .transformEvents(nonDebounceStream.mergeWith([debounceStream]), next);
   }

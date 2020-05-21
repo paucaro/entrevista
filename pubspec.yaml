@@ -24,7 +24,6 @@ dependencies:
   dart_random_choice: ^0.0.2
   auto_size_text: ^2.1.0
   bubble: ^1.1.9+1
-  connectivity: ^0.4.5+7
   flare_flutter:
   firebase_storage: ^3.0.0
   firebase_storage_image: ^0.4.0
@@ -40,7 +39,6 @@ dev_dependencies:
 
 dependency_overrides:
   flutter_offline: "^0.3.0"
-  connectivity: ^0.4.5+7
 
 flutter_icons:
   android: true

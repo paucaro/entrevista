@@ -36,6 +36,7 @@ class DataBaseRespository {
     return preguntaCollection.document(idPregunta).snapshots().map((snapshot) {
       return Pregunta.fromSnapshot(snapshot);
     });
+    
   }
 
   Future<Map<String, bool>> getGuias(String idPregunta) {
